@@ -4,7 +4,7 @@ class Solution {
 
         PriorityQueue<int[]> pq=new PriorityQueue<>((a,b)->Integer.compare(a[1],b[1]));
 
-        //adding intervals by sorting based on first element of the interval;
+        //adding intervals by sorting based on last element of the interval;
         for(int[] interval:intervals)
         {
             pq.offer(interval);
