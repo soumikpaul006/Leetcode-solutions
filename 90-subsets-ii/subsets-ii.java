@@ -36,6 +36,7 @@ class Solution
     }
     public void backtrack(int[] nums,List<Integer> new_list,int idx)
     {
+        // if(final_list.contains(new_list)) return;
         final_list.add(new ArrayList<>(new_list));
 
         for(int i=idx;i<nums.length;i++)
