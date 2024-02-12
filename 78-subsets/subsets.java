@@ -23,3 +23,5 @@ class Solution
         return final_list;
     }
 }
+//TC: O(n*2^n)
+//SC: O(n*2^n)
