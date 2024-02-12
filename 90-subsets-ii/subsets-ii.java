@@ -40,7 +40,7 @@ class Solution
 
         for(int i=idx;i<nums.length;i++)
         {
-            if(i>idx && nums[i]==nums[i-1]) continue;
+            if(i!=idx && nums[i]==nums[i-1]) continue;
 
             new_list.add(nums[i]);
             backtrack(nums,new_list,i+1);
