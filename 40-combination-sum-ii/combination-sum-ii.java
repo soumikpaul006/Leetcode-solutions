@@ -1,7 +1,7 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         
-        Arrays.sort(candidates);
+        Arrays.sort(candidates); //sorted the list
         List<List<Integer>> final_list=new ArrayList<>();
         backtrack(final_list,new ArrayList<>(),candidates,0,target,0);
         return final_list;
@@ -25,7 +25,7 @@ class Solution {
             if(sum + arr[i] <= target) 
             {
                 new_list.add(arr[i]);
-                backtrack(final_list,new_list,arr,sum+arr[i],target,i+1);
+                backtrack(final_list,new_list,arr,sum+arr[i],target,i+1); // note: incrementing the i;
                 new_list.remove(new_list.size()-1);
             }
         }
