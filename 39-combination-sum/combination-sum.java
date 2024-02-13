@@ -20,9 +20,20 @@ class Solution
             if(sum + arr[i] <= target) 
             {
                 new_list.add(arr[i]);
-                backtrack(final_list,new_list,arr,sum+arr[i],target,i);
+                backtrack(final_list,new_list,arr,sum+arr[i],target,i);// Note: i instead of i + 1
                 new_list.remove(new_list.size()-1);
             }
         }
     }
 }
+
+        //                   []
+        //          /      /    |    \     
+        //         2      3     6     7
+        //       /|\     / \    |
+        //      2 3 6 7  3 6 7   6 7
+        //     / \
+        //    2  3
+        //   /
+        //  2
+        // we are repeting the numbers so we did i instead of i+1
