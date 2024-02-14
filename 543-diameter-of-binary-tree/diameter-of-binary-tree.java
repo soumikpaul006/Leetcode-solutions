@@ -18,34 +18,23 @@ class Solution
     int max=0;
     public int diameterOfBinaryTree(TreeNode root) 
     {
-        if(root==null)
-        {
-            return 0;
-        }
-
-        int left=height(root.left);
-        int right=height(root.right);
-
-        max=Math.max(max,left+right);
-
-        diameterOfBinaryTree(root.left);
-        diameterOfBinaryTree(root.right);
-
-        return max;
-        
+        dfs(root);
+        return max; 
     }
-    public int height(TreeNode root)
+    public int dfs(TreeNode root)
     {
         if(root==null)
         {
             return 0;
         }
 
-        int left=height(root.left);
-        int right=height(root.right);
+        int left=dfs(root.left);
+        int right=dfs(root.right);
        
+        max=Math.max(max,left+right);
 
         return 1+Math.max(left,right);
 
     }
 }
+//TC:O(n)
