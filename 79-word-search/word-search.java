@@ -35,7 +35,10 @@ class Solution
         }
 
        
-        boolean found = dfs(board,word,visited,i+1,j,k+1)||dfs(board,word,visited,i-1,j,k+1)||dfs(board,word,visited,i,j-1,k+1)||dfs(board,word,visited,i,j+1,k+1);
+        boolean found = dfs(board,word,visited,i+1,j,k+1)||
+                        dfs(board,word,visited,i-1,j,k+1)||
+                        dfs(board,word,visited,i,j-1,k+1)||
+                        dfs(board,word,visited,i,j+1,k+1);
 
         visited[i][j]=false;
 
