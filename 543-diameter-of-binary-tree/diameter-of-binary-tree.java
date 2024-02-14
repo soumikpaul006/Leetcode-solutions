@@ -13,6 +13,8 @@
  *     }
  * }
  */
+
+ //TC: O(N)  /////Time Optimised
 class Solution 
 {
     int max=0;
@@ -37,4 +39,43 @@ class Solution
 
     }
 }
-//TC:O(n)
+//TC:O(N^2) //Brute Force
+
+// class Solution 
+// {
+//     int max=0;
+//     public int diameterOfBinaryTree(TreeNode root) 
+//     {
+//         if(root==null)
+//         {
+//             return 0;
+//         }
+
+//         int left=height(root.left);
+//         int right=height(root.right);
+
+//         max=Math.max(max,left+right);
+
+//         diameterOfBinaryTree(root.left);
+//         diameterOfBinaryTree(root.right);
+
+//         return max;
+        
+//     }
+//     public int height(TreeNode root)
+//     {
+//         if(root==null)
+//         {
+//             return 0;
+//         }
+
+//         int left=height(root.left);
+//         int right=height(root.right);
+       
+
+//         return 1+Math.max(left,right);
+
+//     }
+// }
+
+
