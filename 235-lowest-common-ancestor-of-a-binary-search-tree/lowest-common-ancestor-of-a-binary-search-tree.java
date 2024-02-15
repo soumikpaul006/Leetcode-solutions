@@ -23,19 +23,20 @@ class Solution
     {
         if(root==null) return null;
 
-        if(root.val>=p.val && root.val<=q.val )
+        if(root.val>=p.val && root.val<=q.val)
         {
             return root;
         }
 
         else if(q.val<root.val)
         {
-            return helper(root.left,p,q);
+            root= helper(root.left,p,q);
 
         }else{
 
-           return helper(root.right,p,q);
+           root =  helper(root.right,p,q);
 
         }
+        return root;
     }
 }
