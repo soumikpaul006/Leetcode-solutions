@@ -8,9 +8,7 @@ class Solution {
         {
             int paper=len-i;
 
-            int citation=citations[i];
-
-            if(citation>=paper)
+            if(citations[i]>=paper)
             {
                 return paper;
             }
