@@ -17,19 +17,19 @@ class Solution
 {
     public List<Integer> rightSideView(TreeNode root) 
     {
-        Queue<TreeNode> q=new LinkedList<>();
         List<Integer> r_list=new ArrayList<>();
+        Queue<TreeNode> q=new LinkedList<>();
 
         if(root==null) return r_list;
 
-
         q.offer(root);
-
+        
         while(!q.isEmpty())
-        {
-            int num=q.size();
-            List<Integer> subList=new LinkedList<>();
-            for(int i=0;i<num;i++)
+        {   
+            int level_size=q.size();
+            List<Integer> sub_list=new LinkedList<>();
+
+            for(int i=0;i<level_size;i++)
             {
                 if(q.peek().left!=null)
                 {
@@ -39,14 +39,12 @@ class Solution
                 {
                     q.offer(q.peek().right);
                 }
-                subList.add(q.remove().val);
+                sub_list.add(q.remove().val);
             }
+            r_list.add(sub_list.get(sub_list.size()-1));
 
-            r_list.add(subList.get(subList.size()-1));
-        
         }
 
         return r_list;
     }
-
 }
