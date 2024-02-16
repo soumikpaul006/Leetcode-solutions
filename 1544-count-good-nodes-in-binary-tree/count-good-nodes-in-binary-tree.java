@@ -15,26 +15,25 @@
  */
 class Solution 
 {
+    int count=0;
     public int goodNodes(TreeNode root) 
     {   
-        int[] count = new int[1]; // using an array to hold the count
-        count[0] = 0;
-       dfs(root,root.val,count);
-       return count[0];
-
+        
+        dfs(root,root.val);
+        return count;
     }
-    public void dfs(TreeNode root,int max,int[] count)
+    public void dfs(TreeNode root,int max)
     {
 
         if(root==null) return;
 
         if(root.val>=max)
         {
-            count[0]=count[0]+1;
+            count=count+1;
             max=root.val;
         }
-        
-        dfs(root.left,max,count);
-        dfs(root.right,max,count);
+
+        dfs(root.left,max);
+        dfs(root.right,max);
     }
 }
