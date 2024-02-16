@@ -40,13 +40,14 @@ class Solution {
             }
             else{ //if the node that we are suppose to delete has two child
 
-                TreeNode node=root.right;
+                TreeNode node=root.right; //assign the right node the target node as node and traverse its leftest node
+
                 while(node.left!=null)
                 {
                     node=node.left;
                 }
 
-                node.left=root.left;
+                node.left=root.left; // attach left of the smallest node of the right side to the left node of the target node
 
                 return root.right;
             }
