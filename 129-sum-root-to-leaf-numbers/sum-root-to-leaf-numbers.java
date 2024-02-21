@@ -23,21 +23,19 @@ class Solution
     }
     public void dfs(TreeNode root,String str)
     {
-        if(root==null)
-        {
+        if(root==null){
             return;
         }
 
         str+=String.valueOf(root.val);
 
-         // Check if the current node is a leaf node
-        if (root.left == null && root.right == null) {
-            // If it's a leaf node, parse the string and add it to the sum
-            sum += Integer.parseInt(str);
+        if(root.left==null && root.right==null){
+            sum+=Integer.valueOf(str);
             return;
         }
-        
-        dfs(root.left, str);
-        dfs(root.right, str);
+
+        dfs(root.left,str);
+        dfs(root.right,str);
+
     }
 }
