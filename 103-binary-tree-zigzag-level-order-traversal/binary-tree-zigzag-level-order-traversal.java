@@ -45,10 +45,13 @@ class Solution {
                 }
 
                 TreeNode node=q.remove();
+
                 if(!counter)//odd level ; 1,3,5. left->right
                 {
                     list.addLast(node.val); // Add to the end for odd levels
+
                 }else{ //even level ;2,4,6. right->left
+                
                     list.addFirst(node.val); // Add to the beginning for even levels
                 }
             }
