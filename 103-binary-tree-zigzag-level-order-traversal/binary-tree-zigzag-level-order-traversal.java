@@ -31,28 +31,26 @@ class Solution {
         {
             int size=q.size();
 
-            LinkedList<Integer> list=new LinkedList<>();
+            List<Integer> list=new LinkedList<>();
 
             for(int i=0;i<size;i++)
             {
-                TreeNode node=q.remove();
-                if(!counter)//false//odd level ; 1,3,5. left->right
+                if(q.peek().left!=null)
                 {
-                  list.addLast(node.val);
+                    q.offer(q.peek().left);
                 }
-                else//true//even level ;2,4,6. right->left
-                { 
-                   list.addFirst(node.val);
-                } 
+                if(q.peek().right!=null)
+                {
+                    q.offer(q.peek().right);
+                }
 
-                if(node.left!=null)
+                TreeNode node=q.remove();
+                if(!counter)//odd level ; 1,3,5. left->right
                 {
-                    q.offer(node.left);
+                    list.addLast(node.val); // Add to the end for odd levels
+                }else{ //even level ;2,4,6. right->left
+                    list.addFirst(node.val); // Add to the beginning for even levels
                 }
-                if(node.right!=null)
-                {
-                    q.offer(node.right);
-                }  
             }
 
             counter=!counter;
