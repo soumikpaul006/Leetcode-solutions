@@ -31,7 +31,7 @@ class Solution
         if(root==null) return 0;
         int max=Integer.MIN_VALUE;
         Queue<Pair> q=new LinkedList<>();
-        List<List<Integer>> final_list=new LinkedList<>();
+        // List<List<Integer>> final_list=new LinkedList<>();
 
         q.offer(new Pair(root,1));
 
@@ -59,15 +59,14 @@ class Solution
                     max=Math.max(max,q.peek().idx-startIdx+1);
                 }
 
-               
-
-                list.add(q.remove().node.val);
+                // list.add(q.remove().node.val);
+                q.remove();
             }
 
-            final_list.add(list);
+            // final_list.add(list);
         }
 
-        System.out.print(final_list);
+        // System.out.print(final_list);
 
         return max;
     }
