@@ -58,15 +58,11 @@ class Solution
                 {
                     max=Math.max(max,q.peek().idx-startIdx+1);
                 }
-
-                // list.add(q.remove().node.val);
+                
                 q.remove();
             }
 
-            // final_list.add(list);
         }
-
-        // System.out.print(final_list);
 
         return max;
     }
