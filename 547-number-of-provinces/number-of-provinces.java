@@ -7,7 +7,7 @@ class Solution {
 
         for(int i=0;i<V;i++)
         {
-            adj_list.add(new ArrayList<>()); // creatre new of nodes
+            adj_list.add(new ArrayList<>()); // creatre new nodes
         }
 
         //create adjacency matrix
@@ -15,9 +15,10 @@ class Solution {
         {   
             for(int j=0;j<isConnected[i].length;j++)
             {
-                if(isConnected[i][j]==1)
+                if(isConnected[i][j]==1 && i!=j)
                 {
                     adj_list.get(i).add(j);
+                    adj_list.get(j).add(i);
                 }
             }
         }
