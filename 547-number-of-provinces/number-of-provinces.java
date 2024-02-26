@@ -51,5 +51,6 @@ class Solution {
                 dfs(adj_list, vis, neighbor); // Recursively visit the neighbor
             }
         }
+
     }
 }
