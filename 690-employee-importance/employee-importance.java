@@ -28,20 +28,6 @@ class Solution
     public void dfs(List<Employee> emp, int id,HashMap<Integer,Integer> map)
     {
 
-        // for(Employee e:emp)
-        // {
-        //     if(e.id==id)
-        //     {
-        //         sum+=map.get(id);
-        //     }
-        //     List<Integer> subord=e.subordinates;
-
-        //     for(Integer i:subord)
-        //     {
-        //         dfs(emp,i,map);
-        //     }
-        // }
-
         for(Employee e : emp)
         {
             if(e.id == id)
