@@ -9,7 +9,6 @@ class Employee {
 
 class Solution 
 {
-    int sum=0;
     public int getImportance(List<Employee> employees, int id) 
     {   
         HashMap<Integer,Employee> map=new HashMap<>();
