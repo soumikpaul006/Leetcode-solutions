@@ -12,9 +12,8 @@ class Solution
     public int getImportance(List<Employee> employees, int id) 
     {   
         HashMap<Integer,Employee> map=new HashMap<>();
-        // int sum=0;
         
-        //mapping emp id with its imp
+        //mapping emp id with its e
         for(Employee e:employees)
         {
             map.put(e.id,e);
