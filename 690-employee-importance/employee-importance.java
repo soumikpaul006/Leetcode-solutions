@@ -12,33 +12,28 @@ class Solution
     int sum=0;
     public int getImportance(List<Employee> employees, int id) 
     {   
-
-        HashMap<Integer,Integer> map=new HashMap<>();
+        HashMap<Integer,Employee> map=new HashMap<>();
+        // int sum=0;
         
         //mapping emp id with its imp
         for(Employee e:employees)
         {
-            map.put(e.id,e.importance);
+            map.put(e.id,e);
         }
 
-        dfs(employees,id,map);
-       
-        return sum;
+        return dfs(id,map);
     }
-    public void dfs(List<Employee> emp, int id,HashMap<Integer,Integer> map)
+    public int dfs(int id,HashMap<Integer,Employee> map)
     {
+        Employee e=map.get(id);
+        int imp=e.importance;
 
-        for(Employee e : emp)
+        for(int i:e.subordinates)
         {
-            if(e.id == id)
-            {
-                sum += map.get(id);
-                List<Integer> subordinates = e.subordinates;
-                for(Integer i : subordinates)
-                {
-                    dfs(emp, i, map); // Recursively calculate importance of subordinates
-                }
-            }
+            imp+=dfs(i,map);
         }
+
+        return imp;
+
     }
 }
