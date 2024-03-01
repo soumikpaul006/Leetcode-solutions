@@ -24,20 +24,28 @@ class Solution
 
     public Node cloneGraph(Node node) 
     {
+
         if(node==null) return null;
-        
+        //create a new Node
         Node newNode=new Node(node.val);
+        
+        //mapping the old node to the new node
+
         map.put(node,newNode);
+
 
         for(Node n:node.neighbors)
         {
+            //if the node already present the no need to apply dfs
             if(map.containsKey(n))
             {
                 newNode.neighbors.add(map.get(n));
-            }else{
+            }
+            else{//if the node does not present the apply dfs
                 newNode.neighbors.add(cloneGraph(n));
             }
         }
+
         return newNode;
     }
 }
