@@ -1,5 +1,7 @@
 // https://www.youtube.com/watch?v=42Z0eaopoZ8
 class Solution {
+
+    int count=0;
     public int minReorder(int n, int[][] connections) 
     {
         //adj list
@@ -19,12 +21,16 @@ class Solution {
             adj_list.get(edge[1]).add(-edge[0]);// add an opposite edge
         }
 
-        return dfs(adj_list,visited,0);//0 is the root
+        // return dfs(adj_list,visited,0);//0 is the root
+
+        dfs(adj_list,visited,0);
+
+        return count;
     }
 
-    public int dfs(List<List<Integer>> adj_list,boolean[] visited,int root)
+    public void dfs(List<List<Integer>> adj_list,boolean[] visited,int root)
     {
-        int count=0;
+        // int count=0;
 
         visited[root]=true;
 
@@ -32,11 +38,17 @@ class Solution {
         {
             if(!visited[Math.abs(e)])
             {
-                count+=dfs(adj_list,visited,Math.abs(e))+(e>0?1:0);
+                // count+=dfs(adj_list,visited,Math.abs(e))+(e>0?1:0);
+                if(e>0)
+                {
+                    count++;
+                }
+
+                dfs(adj_list,visited,Math.abs(e));
             }
         }
 
-        return count;
+        // return count;
     }
 
 }
