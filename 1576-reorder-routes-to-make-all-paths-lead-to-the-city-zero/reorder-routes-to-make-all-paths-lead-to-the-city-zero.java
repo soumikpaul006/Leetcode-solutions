@@ -21,8 +21,6 @@ class Solution {
             adj_list.get(edge[1]).add(-edge[0]);// add an opposite edge
         }
 
-        // return dfs(adj_list,visited,0);//0 is the root
-
         dfs(adj_list,visited,0);
 
         return count;
@@ -30,7 +28,6 @@ class Solution {
 
     public void dfs(List<List<Integer>> adj_list,boolean[] visited,int root)
     {
-        // int count=0;
 
         visited[root]=true;
 
@@ -38,7 +35,7 @@ class Solution {
         {
             if(!visited[Math.abs(e)])
             {
-                // count+=dfs(adj_list,visited,Math.abs(e))+(e>0?1:0);
+                
                 if(e>0)
                 {
                     count++;
@@ -47,8 +44,6 @@ class Solution {
                 dfs(adj_list,visited,Math.abs(e));
             }
         }
-
-        // return count;
     }
 
 }
