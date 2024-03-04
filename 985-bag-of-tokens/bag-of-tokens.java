@@ -2,9 +2,7 @@ class Solution {
     public int bagOfTokensScore(int[] tokens, int power) 
     {
 
-        if(tokens.length==0) return 0;
-        if(tokens.length==1 && power<tokens[0]) return 0;
-        if(tokens.length==1 && power>=tokens[0]) return 1;
+        if(tokens.length==0 || tokens.length==1 && power<tokens[0]) return 0;
 
         int score=0;
 
@@ -16,8 +14,6 @@ class Solution {
         if(tokens[0]>power) return 0;
 
         int ans=0;
-
-        
 
         while(i<=j)
         {
