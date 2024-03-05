@@ -44,17 +44,29 @@ class Solution {
         //     System.out.println();
         // }
 
-        int count=0;
+        //APPROACH 1
 
-        for(int i=1;i<row-1;i++)
+        // int count=0;
+
+        // for(int i=1;i<row-1;i++)
+        // {
+        //     for(int j=1;j<col-1;j++)
+        //     {
+        //         if(board[i][j]==1)
+        //         {
+        //             count=0;
+        //             count+=dfs_count(board,i,j);
+        //         }
+        //     }
+        // }
+
+        //APPROACH 2
+
+         for(int i=0;i<row;i++)
         {
-            for(int j=1;j<col-1;j++)
+            for(int j=0;j<col;j++)
             {
-                if(board[i][j]==1)
-                {
-                    count=0;
-                    count+=dfs_count(board,i,j);
-                }
+                count+=board[i][j];
             }
         }
 
@@ -78,33 +90,35 @@ class Solution {
             return;
         }
 
-        board[i][j]=2;
+        // board[i][j]=2;
+        board[i][j]=0;
+
 
         dfs(board,i+1,j);
         dfs(board,i-1,j);
         dfs(board,i,j+1);
         dfs(board,i,j-1);
     }
-    public int dfs_count(int[][] board,int i,int j)
-    {
+    // public int dfs_count(int[][] board,int i,int j)
+    // {
     
-        if(i<0||j<0||i>board.length-1||j>board[0].length-1||board[i][j]!=1)
-        {
-            return 0;
-        }
+    //     if(i<0||j<0||i>board.length-1||j>board[0].length-1||board[i][j]!=1)
+    //     {
+    //         return 0;
+    //     }
 
-        if(board[i][j]==1)
-        {
-            count++;
-        }
+    //     if(board[i][j]==1)
+    //     {
+    //         count++;
+    //     }
 
-        board[i][j]=3;
+    //     board[i][j]=3;
 
-        dfs_count(board,i+1,j);
-        dfs_count(board,i-1,j);
-        dfs_count(board,i,j+1);
-        dfs_count(board,i,j-1);
+    //     dfs_count(board,i+1,j);
+    //     dfs_count(board,i-1,j);
+    //     dfs_count(board,i,j+1);
+    //     dfs_count(board,i,j-1);
 
-        return count;
-    }
+    //     return count;
+    // }
 }
