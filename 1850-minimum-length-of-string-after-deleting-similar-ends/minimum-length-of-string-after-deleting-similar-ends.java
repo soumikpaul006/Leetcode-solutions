@@ -9,6 +9,7 @@ class Solution
         while(i<j && s.charAt(i)==s.charAt(j))
         {      
             char ch=s.charAt(i);
+            
             while( i<=j && s.charAt(i)==ch) i++;
             while( i<=j && s.charAt(j)==ch) j--;
         }
