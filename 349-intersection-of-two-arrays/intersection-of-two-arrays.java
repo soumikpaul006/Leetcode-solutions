@@ -77,12 +77,9 @@ class Solution {
                 continue;
             }
             else{
-                if(set.contains(nums1[i]))
+                if(set.contains(nums1[i]) && !list.contains(nums1[i]))
                 {
-                    if(!list.contains(nums1[i]))
-                    {
-                        list.add(nums1[i]);
-                    }
+                    list.add(nums1[i]);
                 }
             }
         }
