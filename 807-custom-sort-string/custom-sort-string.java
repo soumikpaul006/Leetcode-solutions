@@ -1,34 +1,43 @@
-class Solution
+class Solution 
 {
-    public String customSortString(String s, String t)
+    public String customSortString(String order, String s)
     {
-        int[] a=new int[26];    
-        for(int i=0;i<t.length();i++)
-        {
-            char c=t.charAt(i);
-            a[c-'a']++;
-        }
-        String ans="";
+        int[] arr=new int[26];
+
+        //freq_count of s
         for(int i=0;i<s.length();i++)
-        {            
-            char c=s.charAt(i);
-            while(a[c-'a']>0)
-            {
-                ans+=c;
-                a[c-'a']--;  
-            }
-        }
-        for(int i=0;i<t.length();i++)
         {
-            char c=t.charAt(i);
-            while(a[c-'a']!=0)
+            arr[s.charAt(i)-'a']++;
+        }
+
+        for(int i=0;i<arr.length;i++)
+        {
+            System.out.print(i+" "+arr[i]);
+        }
+
+        String ans="";
+
+        for(int i=0;i<order.length();i++)
+        {
+           while(arr[order.charAt(i)-'a']>0)
             {
-                ans+=c;
-                a[c-'a']--;
-                
+                ans+=order.charAt(i);
+                arr[order.charAt(i)-'a']--;
+            }
+        
+        }
+
+        for(int i=0;i<s.length();i++)
+        {
+            while(arr[s.charAt(i)-'a']>0)
+            {
+                ans+=s.charAt(i);
+                arr[s.charAt(i)-'a']--;
             }
         }
+
         return ans;
-        
+
+
     }
 }
