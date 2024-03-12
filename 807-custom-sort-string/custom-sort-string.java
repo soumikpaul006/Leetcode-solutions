@@ -10,11 +10,6 @@ class Solution
             arr[s.charAt(i)-'a']++;
         }
 
-        for(int i=0;i<arr.length;i++)
-        {
-            System.out.print(i+" "+arr[i]);
-        }
-
         String ans="";
 
         for(int i=0;i<order.length();i++)
