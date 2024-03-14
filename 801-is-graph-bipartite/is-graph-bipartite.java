@@ -14,7 +14,7 @@ class Solution {
         {
             if(color[i]==-1)
             {
-                if(!bfs(i,graph,color))
+                if(!check(i,graph,color))
                 {
                     return false;
                 }
@@ -25,33 +25,59 @@ class Solution {
         
 
     }
-    public boolean bfs(int start,int[][] graph, int[] color)
+    public boolean check(int start,int[][] graph, int[] color)
     {
+        
+        //BFS
 
-        Queue<Integer> q=new LinkedList<>();
-        q.offer(start);
-        color[start]=0;
+        // Queue<Integer> q=new LinkedList<>();
+        // q.offer(start);
+        // color[start]=0;
 
 
-        while(!q.isEmpty())
+        // while(!q.isEmpty())
+        // {
+        //     int node=q.remove();
+        //     int col=color[node];
+
+        //     for(int neighbors: graph[node])
+        //     {
+        //         if(color[neighbors]==-1)
+        //         {
+        //             color[neighbors]=(col==1)?0:1;
+        //             q.offer(neighbors);
+        //         }
+        //         else if(color[neighbors]==col)
+        //         {
+        //             return false;
+        //         }
+        //     }
+        // }
+
+        // return true;
+
+
+        //DFS
+        int col=color[start];
+
+        for(int neighbors:graph[start])
         {
-            int node=q.remove();
-            int col=color[node];
-
-            for(int neighbors: graph[node])
+            if(color[neighbors]==-1) // the neighbors is not color
             {
-                if(color[neighbors]==-1)
-                {
-                    color[neighbors]=(col==1)?0:1;
-                    q.offer(neighbors);
-                }
-                else if(color[neighbors]==col)
+                color[neighbors]=(col==1)?0:1;
+
+                if(!check(neighbors,graph,color))
                 {
                     return false;
                 }
-            }
-        }
 
+            }
+            else if(color[neighbors]==col)
+            {
+                return false;
+            }
+
+        }
         return true;
 
     }
