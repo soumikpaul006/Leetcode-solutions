@@ -61,14 +61,8 @@ class Solution {
             }
         }
 
-        boolean flag=true;
-
+    
         if(list.size()!=numCourses)
-        {
-            flag=false;
-        }
-
-        if(!flag)
         {
             return new int[0];
         }
