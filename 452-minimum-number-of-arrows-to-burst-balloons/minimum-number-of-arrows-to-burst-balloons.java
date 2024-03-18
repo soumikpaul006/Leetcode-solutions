@@ -4,8 +4,6 @@ class Solution {
         PriorityQueue<int[]> pq=new PriorityQueue<>((a,b)->Integer.compare(a[1],b[1]));
         int count=1;
 
-
-
         for(int[] interval:points)
         {
             pq.add(interval);
@@ -28,9 +26,7 @@ class Solution {
                 count++;
                 list.add(new_interval);
                 i++;
-            }
-            
-            
+            }   
         }
 
         return count;
