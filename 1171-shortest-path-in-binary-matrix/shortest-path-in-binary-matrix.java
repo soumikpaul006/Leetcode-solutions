@@ -1,12 +1,15 @@
 import java.util.*;
 
-class Solution {
-    class Pair {
+class Solution 
+{
+    class Pair
+    {
         int weight;
         int row;
         int col;
 
-        Pair(int weight, int row, int col) {
+        Pair(int weight, int row, int col) 
+        {
             this.weight = weight;
             this.row = row;
             this.col = col;
@@ -23,11 +26,15 @@ class Solution {
         Queue<Pair> q = new LinkedList<>();
         int[][] dist = new int[row][col];
 
-        for (int i = 0; i < row; i++) {
-            Arrays.fill(dist[i], Integer.MAX_VALUE);
+        for (int i = 0;i<row;i++) 
+        {
+            for(int j=0;j<col;j++)
+            {
+                dist[i][j]=(int)(1e9);
+            }
         }
 
-        if (grid[0][0] == 1 || grid[row - 1][col - 1] == 1) 
+        if(grid[0][0] == 1 || grid[row - 1][col - 1] == 1) 
         {
             return -1; // Check if the start or end cell is blocked
         }
