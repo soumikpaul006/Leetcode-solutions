@@ -14,20 +14,20 @@ class Solution
     {   
 
         if(head==null || head.next==null) return true;
-        ListNode prev=null;
-        ListNode slow=head;
 
+        // ListNode prev=null;
+        ListNode slow=head;
         ListNode fast=head;
 
         //find middle
         while(fast!=null && fast.next!=null)
         {
-            prev=slow; 
+            // prev=slow; 
             slow=slow.next;
             fast=fast.next.next;
         }
 
-        prev.next=null;
+        // prev.next=null;
 
         ListNode rev=reverse(slow);
 
