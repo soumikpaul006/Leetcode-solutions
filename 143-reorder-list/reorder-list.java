@@ -26,22 +26,22 @@ class Solution {
         ListNode left=head;
         ListNode left_next=left.next;
 
-
         while(left_next!=null && right_next!=null)
         {
             left.next=right;
+            right.next=left_next;
             left=left_next;
-            right.next=left;
-            left_next=left_next.next;
             right=right_next;
+            left_next=left_next.next;
             right_next=right_next.next;
+
         }
     }
     public ListNode reverse(ListNode head)
     {
         ListNode prev=null;
-        ListNode next=head;
         ListNode curr=head;
+        ListNode next=null;
 
         while(curr!=null)
         {
@@ -50,7 +50,9 @@ class Solution {
             prev=curr;
             curr=next;
         }
+
         return prev;
+        
     }
 
 }
