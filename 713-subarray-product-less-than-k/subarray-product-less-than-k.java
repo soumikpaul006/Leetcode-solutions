@@ -1,5 +1,6 @@
 class Solution {
-    public int numSubarrayProductLessThanK(int[] nums, int k) {
+    public int numSubarrayProductLessThanK(int[] nums, int k) 
+    {
         if (k <= 1) return 0;
        
         int product = 1;
@@ -8,10 +9,12 @@ class Solution {
         int i = 0;
         int j = 0;
 
-        while (j < nums.length) {
+        while (j < nums.length) 
+        {
             product *= nums[j];
 
-            while (product >= k) {
+            while (product >= k) 
+            {
                 product /= nums[i];
                 i++;
             }
