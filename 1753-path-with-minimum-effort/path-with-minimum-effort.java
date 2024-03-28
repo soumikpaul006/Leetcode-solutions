@@ -48,10 +48,10 @@ class Solution
             int row=pair.row;
             int col=pair.col;
 
-            if(row==n-1 && col==m-1)
-            {
-                return diff;
-            }
+            // if(row==n-1 && col==m-1)
+            // {
+            //     return diff;
+            // }
 
             for(int i=0;i<4;i++)
             {
@@ -72,6 +72,6 @@ class Solution
 
         } 
 
-        return 0; 
+        return dist[n-1][m-1]; 
     }
 }
