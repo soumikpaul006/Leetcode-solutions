@@ -16,6 +16,7 @@ class Solution
     public int minimumEffortPath(int[][] heights) 
     {
         //Dijistra Algo
+        //TC O(ElogV)
 
         PriorityQueue<Pair> pq=new PriorityQueue<>((x,y)->x.distance-y.distance);
 
