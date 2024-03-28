@@ -27,6 +27,9 @@ class Solution
     }
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) 
     {
+        //Dijistra but not using PQ and soring in basis of stops
+        //TC: O(E) E-> flights.length
+
         int m=flights[0].length;
 
         ArrayList<ArrayList<Pair>> adj=new ArrayList<>();
