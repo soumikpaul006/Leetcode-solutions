@@ -53,8 +53,6 @@ class Solution
             double price=t.first;
             int node=t.second;
 
-            // if()
-
             for(Pair p:adj.get(node))
             {
                 double adjCost=p.first;
