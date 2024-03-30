@@ -1,29 +1,34 @@
-import java.util.*;
+class Solution 
+{
+    public long countSubarrays(int[] nums, int k) 
+    {
+        int max= Arrays.stream(nums).max().getAsInt();
 
-class Solution {
-    public long countSubarrays(int[] nums, int k) {
-        long maxNum = Long.MIN_VALUE, count = 0;
-        long left = 0, right = 0, ans = 0;
-        
-        // Find the maximum element in the array
-        for (int num : nums) {
-            maxNum = Math.max(maxNum, num);
+        //finding max elemnet
+        for(int i=0;i<nums.length;i++)
+        {
+            max=Math.max(max,nums[i]);
         }
-        
-        while (right < nums.length || left > right) {
-            if (nums[(int)right] == maxNum) {
-                count++;
+
+        List<Integer> list=new ArrayList<>();
+
+        long ans=0;
+
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==max)
+            {
+                list.add(i);
             }
-            // If count is greater than or equal to k, calculate subarrays count
-            while (count >= k) {
-                if (nums[(int)left] == maxNum) {
-                    count--;
-                }
-                left++;
-                ans += nums.length - right;
+
+            int freq=list.size();
+
+            if(freq>=k)
+            {
+                ans+=list.get(freq-k)+1;
             }
-            right++;
         }
         return ans;
     }
+
 }
