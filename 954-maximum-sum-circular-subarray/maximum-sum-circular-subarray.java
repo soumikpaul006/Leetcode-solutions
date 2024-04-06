@@ -23,7 +23,7 @@ class Solution {
         }
 
 
-        if(min==total)
+        if(min==total) //if all the elements are -ve;
         {
             return max;
         }
