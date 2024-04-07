@@ -1,24 +1,33 @@
-import java.util.Arrays;
+class Solution 
+{
+    public boolean canJump(int[] nums) 
+    {
+        if(nums.length==1) return true;
+        if(nums[0]==0) return false;
+        boolean[] arr=new boolean[nums.length];
+        Arrays.fill(arr,false);
 
-class Solution {
-    public boolean canJump(int[] nums) {
-        if (nums.length == 1) return true;
-        
-        boolean[] canReach = new boolean[nums.length];
-        canReach[0] = true;
+        arr[0]=true;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (!canReach[i]) continue; // If the current position is not reachable, skip
+        for(int i=0;i<nums.length;i++)
+        {
 
-            int steps = nums[i];
-            for (int j = 1; j <= steps; j++) {
-                int nextIndex = i + j;
-                if (nextIndex >= nums.length) break; // Prevent index out of bounds
-                canReach[nextIndex] = true;
-                if (nextIndex == nums.length - 1) return true; // Reachable till the end
-            }
+            if(!arr[i]) continue;
+
+            int num=nums[i];
+
+            int j=i+1;
+
+            while(j<nums.length && num>0)
+            {
+                arr[j++]=true;
+
+                if(arr[nums.length-1]) return true;
+
+                num--;
+            }   
         }
 
-        return canReach[nums.length - 1];
+        return false;   
     }
 }
