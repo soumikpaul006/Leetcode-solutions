@@ -47,15 +47,10 @@ class Solution
                 {
                     star_stack.pop();
                 }
-                else{
+                else
+                {
                     return false;
-                }
-
-                //counting * as (
-                // else if(open_stack.isEmpty() && !star_stack.isEmpty())
-                // {
-                //     star_stack.pop();
-                // }
+                }            
             }
         }
 
