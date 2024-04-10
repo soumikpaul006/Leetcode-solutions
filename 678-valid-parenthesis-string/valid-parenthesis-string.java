@@ -1,22 +1,76 @@
-public class Solution {
-    public boolean checkValidString(String s) {
-        int leftMin = 0, leftMax = 0;
+import java.util.*;
 
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                leftMin++;
-                leftMax++;
-            } else if (c == ')') {
-                leftMin--;
-                leftMax--;
-            } else {
-                leftMin--;
-                leftMax++;
+class Solution 
+{
+    class Pair
+    {
+        char first;
+        int second;
+
+        Pair(char first,int second)
+        {
+            this.first=first;
+            this.second=second;
+        }
+
+    }
+
+    public boolean checkValidString(String s) 
+    {
+
+        // TC: O(n) ; SC: O(n)
+        Stack<Pair> open_stack = new Stack<>();
+        Stack<Pair> star_stack = new Stack<>();
+
+
+        for(int i=0;i<s.length();i++)
+        {
+
+            if(s.charAt(i)=='(')
+            {
+                open_stack.add(new Pair('(',i));
+
+            }else if(s.charAt(i)=='*'){
+
+                star_stack.add(new Pair('*',i));
             }
-            if (leftMax < 0) return false;
-            if (leftMin < 0) leftMin = 0;
+
+
+            else if(s.charAt(i)==')')
+            {
+                if(!open_stack.isEmpty())
+                {
+                    open_stack.pop();
+                }
+
+                else if(!star_stack.isEmpty())
+                {
+                    star_stack.pop();
+                }
+                else{
+                    return false;
+                }
+
+                //counting * as (
+                // else if(open_stack.isEmpty() && !star_stack.isEmpty())
+                // {
+                //     star_stack.pop();
+                // }
+            }
+        }
+
+        while(!open_stack.isEmpty())
+        {
+            if(!star_stack.isEmpty() && (open_stack.peek().second<star_stack.peek().second) )
+            {
+                open_stack.pop();
+                star_stack.pop();
+
+            }else{
+                return false;
+            }
         }
         
-        return leftMin == 0;
+        return open_stack.isEmpty();  
     }
 }
