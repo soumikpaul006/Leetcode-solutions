@@ -27,17 +27,9 @@ class Solution
                 count++;
                 list.add(pair);
                 current_interval=pair;
-
-            }else{
-                continue;
             }
-
         }
 
         return count;
-
-
-
-        
     }
 }
