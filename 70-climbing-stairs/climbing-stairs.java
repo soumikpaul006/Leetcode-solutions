@@ -2,10 +2,6 @@ class Solution
 {   
     public int climbStairs(int n) 
     {
-        return helper(n);
-    }
-    public int helper(int n)
-    {
         int prev1=1;
         int prev2=1;
 
