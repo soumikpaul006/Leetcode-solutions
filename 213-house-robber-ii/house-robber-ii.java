@@ -1,48 +1,31 @@
-class Solution {
+class Solution 
+{
     public int rob(int[] nums) 
     {
         if(nums.length==1) return nums[0];
 
         int n=nums.length;
-        int[] nums1=new int[n-1];
-        int[] nums2=new int[n-1];
 
-        //0->n-2
-        for(int i=0;i<nums.length-1;i++)
-        {
-            nums1[i]=nums[i];  
-        }
+        int[] dp1=new int[n];
+        Arrays.fill(dp1,-1);
 
-        // 1->n-1
-        for(int i = 1; i < nums.length; i++) 
-        {
-            nums2[i - 1] = nums[i];
-        }
+        int[] dp2=new int[n];
+        Arrays.fill(dp2,-1);
+        
 
-        return Math.max(helper(nums1,nums1.length),helper(nums2,nums2.length));
+        return Math.max(helper(nums,0,n-2,dp1),helper(nums,1,n-1,dp2));
+        
     }
-    public int helper(int[] nums,int n)
+    public int helper(int[] nums,int start,int end,int[] dp)
     {
-        int prev1=0;
-        int prev2=nums[0];
+        if(end<start) return 0;
 
-        for(int i=1;i<n;i++)
-        {
-            int if_rob=nums[i];
+        if(dp[end]!=-1) return dp[end];
 
-            if(i>1)
-            {
-                if_rob+=prev1;
-            }
+        int if_rob=nums[end]+helper(nums,start,end-2,dp);
 
-            int no_rob=prev2;
+        int not_rob=helper(nums,start,end-1,dp);
 
-            int curr=Math.max(if_rob,no_rob);
-            prev1=prev2;
-            prev2=curr;
-        }
-    
-        return prev2;
-    
+        return dp[end]=Math.max(if_rob,not_rob);
     }
 }
