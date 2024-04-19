@@ -9,16 +9,17 @@ class Solution {
     }
     public int helper(int[] nums,int n)
     {
-        int[] dp=new int[n+1];
-        
-        dp[0]=0;
-        dp[1]=nums[0];
+        int prev1=0;
+        int prev2=nums[0];
 
         for(int i=1;i<n;i++)
         {
-            dp[i+1]=Math.max(nums[i]+dp[i-1],dp[i]);
+            int curr=Math.max(nums[i]+prev1,prev2);
+            prev1=prev2;
+            prev2=curr;
+
         }
 
-        return dp[n];
+        return prev2;
     }
 }
