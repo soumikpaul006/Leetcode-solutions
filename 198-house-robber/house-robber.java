@@ -9,9 +9,10 @@ class Solution {
     }
     public int helper(int[] nums,int n)
     {
-        int[] dp=new int[n];
+        // int[] dp=new int[n];
         
-        dp[0]=nums[0];
+        int prev1=0;
+        int prev2=nums[0];
 
         for(int i=1;i<n;i++)
         {
@@ -19,14 +20,17 @@ class Solution {
 
             if(i>1)
             {
-                if_rob+=dp[i-2];
+                if_rob+=prev1;
             }
-            
-            int not_rob=dp[i-1];
 
-            dp[i]=Math.max(if_rob,not_rob);
+            int not_rob=prev2;
+
+            int curr=Math.max(if_rob,not_rob);
+
+            prev1=prev2;
+            prev2=curr;
         }
 
-        return dp[n-1];
+        return prev2;
     }
 }
