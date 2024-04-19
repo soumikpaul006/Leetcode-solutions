@@ -1,37 +1,46 @@
 class Solution {
     public int rob(int[] nums) 
     {
-        if(nums.length==1)
+        if(nums.length==1) return nums[0];
+
+        int n=nums.length;
+        int[] nums1=new int[n-1];
+        int[] nums2=new int[n-1];
+
+        //0->n-2
+        for(int i=0;i<nums.length-1;i++)
         {
-            return nums[0];
+            nums1[i]=nums[i];  
         }
 
+        // 1->n-1
+        for(int i = 1; i < nums.length; i++) 
+        {
+            nums2[i - 1] = nums[i];
+        }
 
-        int[] dp1=new int[nums.length];
-        int[] dp2=new int[nums.length];
+        int[] dp1=new int[n-1];
+        Arrays.fill(dp1,-1);
 
+        int[] dp2=new int[n-1];
+        Arrays.fill(dp2,-1);
+
+        return Math.max(helper(nums1,nums1.length-1,dp1),helper(nums2,nums2.length-1,dp2));
+    }
+    public int helper(int[] nums,int n,int[] dp)
+    {
+        if(n<0)
+        {
+            return 0;
+        }
+
+        if(dp[n]!=-1) return dp[n];
         
-        dp1[0]=0;
-        dp2[0]=0;
+        int if_rob=nums[n]+helper(nums,n-2,dp);
 
-        dp1[1]=nums[0];
-        dp2[1]=nums[1];
+        int not_rob=helper(nums,n-1,dp);
 
-        for(int i=1;i<nums.length-1;i++)
-        {
-            dp1[i+1]=Math.max(dp1[i],nums[i]+dp1[i-1]);
-        }
-
-        for(int i=2;i<nums.length;i++)
-        {
-            dp2[i]=Math.max(dp2[i-1],nums[i]+dp2[i-2]);
-        }
-
-        if(dp1[dp1.length-1]>dp2[dp2.length-1])
-        { 
-            return dp1[dp1.length-1];
-        }
-
-        return dp2[dp2.length-1];
+        return dp[n]=Math.max(if_rob,not_rob);
+    
     }
 }
