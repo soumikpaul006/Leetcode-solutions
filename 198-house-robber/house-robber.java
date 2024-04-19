@@ -5,27 +5,20 @@ class Solution {
 
         int n=nums.length;
 
-        int[] dp=new int[n];
-
-        Arrays.fill(dp,-1);
-
-    
-        return helper(nums,n-1,dp);
+        return helper(nums,n);
     }
-    public int helper(int[] nums,int n,int[] dp)
+    public int helper(int[] nums,int n)
     {
-        if(n<0)
+        int[] dp=new int[n+1];
+        
+        dp[0]=0;
+        dp[1]=nums[0];
+
+        for(int i=1;i<n;i++)
         {
-            return 0;
+            dp[i+1]=Math.max(nums[i]+dp[i-1],dp[i]);
         }
 
-        if(dp[n]!=-1) return dp[n];
-        
-        int if_rob=nums[n]+helper(nums,n-2,dp);
-
-        int not_rob=helper(nums,n-1,dp);
-
-        return dp[n]=Math.max(if_rob,not_rob);
-    
+        return dp[n];
     }
 }
