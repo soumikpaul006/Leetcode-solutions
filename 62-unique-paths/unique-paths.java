@@ -1,6 +1,6 @@
 class Solution 
 {
-    //O(2^m*n);
+    //O(n*n);
     public int uniquePaths(int m, int n) 
     {
         int[][] dp=new int[m][n];
