@@ -5,31 +5,53 @@ class Solution
         int m=grid.length;
         int n=grid[0].length;
 
+        
+
+        return helper(grid,m,n);        
+    }
+    public int helper(int[][] grid,int m,int n)
+    {
+
         int[][] dp=new int[m][n];
 
         for(int i=0;i<m;i++)
         {
             for(int j=0;j<n;j++)
             {
-                dp[i][j]=-1;
+                if(i==0 && j==0)
+                {
+                    dp[0][0]=grid[0][0];
+                } 
+                else{
+                    // int up=grid[i][j];
+                    // int left=grid[i][j];
+
+                    int up=0;
+                    int left=0;
+
+
+                    if(i>0)
+                    {
+                        up+=dp[i-1][j];
+                    }
+                    else{
+                        up+=1e9;
+                    }
+                    
+                    if(j>0)
+                    {
+                        left+=dp[i][j-1];
+                    }
+                    else{
+                        left+=1e9;
+                    }
+
+                    dp[i][j]=Math.min(up,left)+grid[i][j];
+                }
             }
         }
 
-        return helper(grid,m-1,n-1,dp);        
-    }
-    public int helper(int[][] grid,int m,int n,int[][] dp)
-    {
-        if(m==0 && n==0) return grid[0][0];
-        if(m<0 || n<0) return Integer.MAX_VALUE;// TAKE SUCH A BIG VALUE SO THAT NO CALL TAKES IT
-
-        if(dp[m][n]!=-1) return dp[m][n];
-
-
-        int up=helper(grid,m-1,n,dp);
-        int left=helper(grid,m,n-1,dp);
-
-
-        return dp[m][n]=Math.min(up,left)+grid[m][n];
+        return dp[m-1][n-1];
 
     }
 }
