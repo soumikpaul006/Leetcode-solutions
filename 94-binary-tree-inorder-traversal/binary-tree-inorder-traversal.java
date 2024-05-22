@@ -13,24 +13,22 @@
  *     }
  * }
  */
-class Solution 
+class Solution
 {
     public List<Integer> list=new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) 
     {
-       
         dfs(root);
         return list;
     }
     public void dfs(TreeNode root)
     {
-        if(root==null){
+        if(root==null)
+        {
             return;
         }
 
-        
-
-        dfs(root.left);;
+        dfs(root.left);
         list.add(root.val);
         dfs(root.right);
 
