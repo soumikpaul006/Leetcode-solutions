@@ -1,28 +1,28 @@
-class Solution {
+class Solution 
+{
+    public List<String> list=new ArrayList<>();
+
     public List<String> generateParenthesis(int n) 
     {
-        List<String> final_list = new ArrayList<>();
-
-        backtrack(final_list, 0,0,"",n);
-        return final_list;
+        dfs(n,0,0,"");
+        return list;   
     }
-    public void backtrack(List<String> final_list, int open,int close,String s,int n)
+    public void dfs(int n,int open,int close,String str)
     {
-        //base
-        if(s.length()==n*2)
+        if(str.length()==2*n)
         {
-            final_list.add(s);
+            list.add(str);
             return;
         }
 
-        //equation
+
         if(open<n)
         {
-            backtrack(final_list,open+1,close,s+'(',n);
+            dfs(n,open+1,close,str+'(');
         }
-        if(close<open){
-            backtrack(final_list,open,close+1,s+')',n);
+        if(close<open)
+        {
+            dfs(n,open,close+1,str+')');
         }
-
     }
 }
