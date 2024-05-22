@@ -21,19 +21,14 @@ class Solution {
     }
     public void dfs(TreeNode root)
     {
-        if(root==null)
-        {
-            return;
-        } 
+        if(root==null) return;
 
-
-        //swap the nodes
         TreeNode temp=root.right;
         root.right=root.left;
         root.left=temp;
 
-        dfs(root.left);
         dfs(root.right);
+        dfs(root.left);
 
-    }   
+    }
 }
