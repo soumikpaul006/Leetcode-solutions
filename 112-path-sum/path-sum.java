@@ -13,21 +13,20 @@
  *     }
  * }
  */
-class Solution 
+class Solution
 {
     public boolean hasPathSum(TreeNode root, int targetSum) 
     {
-        if(root==null)
-        {
-            return false;
-        }
-        
-        targetSum-=root.val;
+        return dfs(root,targetSum);
+    }
+    public boolean dfs(TreeNode root,int target)
+    {
+        if(root==null) return false;
 
-        if(targetSum==0 && root.left==null && root.right==null) return true;// root.left==null && root.right==null is checked so that the recursion traverse to the last element
+        target-=root.val;
 
-        return hasPathSum(root.left,targetSum)||hasPathSum(root.right,targetSum);
-        
-        
+        if(target==0 && root.left==null && root.right==null) return true;
+
+        return dfs(root.right,target)||dfs(root.left,target);
     }
 }
