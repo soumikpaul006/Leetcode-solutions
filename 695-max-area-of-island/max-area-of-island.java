@@ -13,7 +13,7 @@ class Solution {
             {
                 if(grid[i][j]==1)
                 {
-                    int count=dfs(grid,i,j,0);
+                    int count=dfs(grid,i,j);
                     ans=Math.max(ans,count);
                 }
             }
@@ -22,23 +22,24 @@ class Solution {
         return ans;
         
     }
-    public int dfs(int[][] grid,int i,int j,int sum)
+    public int dfs(int[][] grid,int i,int j)
     {
         //base
         if(i<0||j<0||i>grid.length-1||j>grid[0].length-1||grid[i][j]!=1)
         {
-            return sum;
+            return 0;
         }
-        sum=sum+1;
+   
 
         grid[i][j]=2;
 
+        int sum=1;
         
 
-        sum= dfs(grid,i+1,j,sum);
-        sum= dfs(grid,i-1,j,sum);
-        sum= dfs(grid,i,j+1,sum);
-        sum= dfs(grid,i,j-1,sum);
+        sum+= dfs(grid,i+1,j);
+        sum+= dfs(grid,i-1,j);
+        sum+= dfs(grid,i,j+1);
+        sum+= dfs(grid,i,j-1);
 
         return sum;
 
