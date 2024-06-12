@@ -11,18 +11,35 @@ class Solution
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
         }   
 
-        List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(map.entrySet());
+        // List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(map.entrySet());
 
-        entries.sort((a, b) -> b.getValue().compareTo(a.getValue()));
+        // entries.sort((a, b) -> b.getValue().compareTo(a.getValue()));
         
 
-        int[] result = new int[k];
+        // int[] result = new int[k];
 
-        for (int i = 0; i < k; i++) 
+        // for (int i = 0; i < k; i++) 
+        // {
+        //     result[i] = entries.get(i).getKey();
+        // }
+
+        // return result;
+
+        PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)->map.get(b)-map.get(a));
+
+        for(Map.Entry<Integer,Integer> entry:map.entrySet())
         {
-            result[i] = entries.get(i).getKey();
+            pq.add(entry.getKey());
         }
 
-        return result;
+        int[] arr=new int[k];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=pq.remove();
+        }
+
+        return arr;
+
     }
 }
