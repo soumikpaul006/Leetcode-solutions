@@ -5,10 +5,10 @@ class Solution
         int max=0;
         int start=prices[0];
 
-        for(int i=0;i<prices.length;i++)
+        for(int i=1;i<prices.length;i++)
         {
 
-                if(prices[i]<=start)
+                if(prices[i]<start)
                 {
                     start=prices[i];
                 }
