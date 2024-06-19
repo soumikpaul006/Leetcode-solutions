@@ -31,7 +31,7 @@ class Solution {
                               0 + func(prices, idx + 1, 0, dp)); // do not sell
         }
 
-        dp[idx][buy] = profit;
-        return dp[idx][buy];
+        
+        return dp[idx][buy] = profit;
     }
 }
