@@ -8,7 +8,14 @@ class Solution {
 
         for(int i=1;i<nums.length;i++)
         {   
-            max=Math.max(nums[i]+max,nums[i]);
+            if(nums[i]<nums[i]+max)
+            {
+                max=nums[i]+max;
+            }
+            else{
+                max=nums[i];
+            }
+
             totalMax=Math.max(totalMax,max);
         }
 
