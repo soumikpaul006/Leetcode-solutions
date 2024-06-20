@@ -6,20 +6,21 @@ class Solution {
 
         while(i<s.length() && j<t.length())
         {
-            if(s.charAt(i)==t.charAt(j))
+            if(s.charAt(i)!=t.charAt(j))
             {
-                i++;
                 j++;
             }
             else{
+                i++;
                 j++;
             }
         }
 
-        if(i<s.length())
+        if(i!=s.length())
         {
             return false;
         }
+
         return true;
     }
 }
