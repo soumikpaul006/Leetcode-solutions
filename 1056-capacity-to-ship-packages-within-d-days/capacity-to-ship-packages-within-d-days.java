@@ -1,7 +1,7 @@
 class Solution {
     public int shipWithinDays(int[] weights, int days)
     {
-        int start = 0; // should be initialized to 0
+        int start = 0; 
         int total = 0;
 
         for (int x : weights) {
