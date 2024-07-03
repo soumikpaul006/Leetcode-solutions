@@ -6,6 +6,7 @@ class Solution {
 
         int start=1;
         int end=num/2;
+
         int mid=-1;
 
         while(start<=end)
@@ -26,7 +27,7 @@ class Solution {
 
         }
 
-        return Math.round(end);
+        return end;
         
     }
 }
