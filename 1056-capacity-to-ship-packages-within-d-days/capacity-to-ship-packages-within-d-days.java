@@ -10,7 +10,7 @@ class Solution {
         }
 
         int end = total;
-        
+
         while(start<=end)
         {
             int cap=(start+end)/2;
@@ -23,24 +23,30 @@ class Solution {
                 start=cap+1;
             }
         }
+
         return start;
     }
     public boolean helper(int[] arr, int cap, int days) {
         int total = 0;
         int dayCount = 1; // start with one day
 
-        for (int x : arr) {
+        for (int x : arr) 
+        {
             total += x;
 
-            if (total > cap) {
+            if (total >cap) 
+            {
                 total = x; // start a new day with the current weight
                 dayCount++;
-
-                if (dayCount > days) {
+                
+                if (dayCount > days) 
+                {
                     return false;
                 }
             }
         }
+
+        
 
         return true;
     }
