@@ -10,7 +10,7 @@ class Solution {
         }
 
 
-        while(start<end)
+        while(start<=end)
         {
             int speed=(start+end)/2;
 
@@ -23,14 +23,14 @@ class Solution {
 
             if(total<=h)
             {
-                end=speed;
+                end=speed-1;
             }
             else{
                 start=speed+1;
             }
         }
 
-        return end;
+        return start;
 
     }
 }
