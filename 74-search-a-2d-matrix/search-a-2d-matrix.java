@@ -26,10 +26,10 @@ class Solution
         // end_r may be -1, start_r should be in bounds
         int row=end_r>=0?end_r:0;
 
-        // if (end_r == -1 || row >= matrix.length) 
-        // {
-        //     return false;
-        // }
+        if (end_r == -1 || row >= matrix.length) 
+        {
+            return false;
+        }
 
         int[] selectedRow=matrix[row];
 
