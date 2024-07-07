@@ -13,30 +13,30 @@ class Solution {
                 return mid;
             }
 
-            // Check if the left part is sorted
-            if (nums[start] <= nums[mid]) 
+            //left half is sorted
+            if(nums[start]<=nums[mid])
             {
-                if (target >= nums[start] && target < nums[mid]) 
+                if(target>=nums[start] && target<=nums[mid])
                 {
-                    end = mid - 1;
-                } 
-                else 
-                {
-                    start = mid + 1;
+                    end=mid-1;
                 }
-            } 
-            else 
-            {
-                // The right part is sorted
-                if (target > nums[mid] && target <= nums[end]) 
-                {
-                    start = mid + 1;
-                } 
-                else 
-                {
-                    end = mid - 1;
-                }
+                else{
+                    start=mid+1;
+                }   
             }
+            else{//right side sorted
+
+                if(target>=nums[mid] && target<=nums[end])
+                {
+                    start=mid+1;
+                }
+                else{
+                    end=mid-1;
+                }  
+
+            }
+            
+
         }
 
         return -1;  // target not found
