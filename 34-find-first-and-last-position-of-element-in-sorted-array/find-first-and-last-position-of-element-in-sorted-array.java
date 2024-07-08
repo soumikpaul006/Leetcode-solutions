@@ -1,61 +1,63 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) 
-    {
-        int[] ans={-1,-1};
+    {  
+        int fo=firstOcc(nums,target);
 
-        if(nums.length==0) return ans;
-
-        int lb=lowerBound(nums,target);
-        int ub=upperBound(nums,target);
-
-        if(lb==nums.length || nums[lb]!=target)
+        if(fo==-1)
         {
             return new int[]{-1,-1};
         }
 
-        ans[0]=lb;
-        ans[1]=ub-1;
+        int lo=lastOcc(nums,target);
 
-        return ans;
+        return new int[]{fo,lo};
     }
-    public int lowerBound(int[] arr,int target)
+    public int firstOcc(int[] arr,int target)
     {
         int start=0;
         int end=arr.length-1;
-        int ans=arr.length;
+        int ans=-1;
 
         while(start<=end)
         {
             int mid=(start+end)/2;
 
-            if(arr[mid]>=target)
+            if(arr[mid]==target)
             {
                 ans=mid;
                 end=mid-1;
             }
-            else{
+            else if(arr[mid]<target)
+            {
                 start=mid+1;
+            }
+            else{
+                end=mid-1;
             }
         }
         return ans;
     }
-    public int upperBound(int[] arr,int target)
+    public int lastOcc(int[] arr,int target)
     {
         int start=0;
         int end=arr.length-1;
-        int ans=arr.length;
+        int ans=-1;
 
         while(start<=end)
         {
             int mid=(start+end)/2;
-
-            if(arr[mid]>target)
+            
+            if(arr[mid]==target)
             {
                 ans=mid;
-                end=mid-1;
+                start=mid+1;
+            }
+            else if(arr[mid]<target)
+            {
+                start=mid+1;
             }
             else{
-                start=mid+1;
+                end=mid-1;
             }
         }
         return ans;
