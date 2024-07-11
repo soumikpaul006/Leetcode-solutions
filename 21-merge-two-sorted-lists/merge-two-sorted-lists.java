@@ -33,14 +33,14 @@ class Solution {
             curr=curr.next;
         }
 
-        if(curr1!=null)
+        while(curr1!=null)
         {
             curr.next=curr1;
             curr1=curr1.next;
             curr=curr.next;
         }
 
-        if(curr2!=null)
+        while(curr2!=null)
         {
             curr.next=curr2;
             curr2=curr2.next;
