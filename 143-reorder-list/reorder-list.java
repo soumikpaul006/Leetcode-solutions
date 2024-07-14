@@ -20,22 +20,26 @@ class Solution {
             fast=fast.next.next;
         }
 
-        ListNode right=reverse(slow);
-        ListNode right_next=right.next;
+        ListNode rev=reverse(slow);
 
-        ListNode left=head;
-        ListNode left_next=left.next;
+        ListNode curr1=head;
+        ListNode curr1_next=curr1.next;
+        ListNode curr2=rev;
+        ListNode curr2_next=curr2.next;
 
-        while(left_next!=null && right_next!=null)
+        while(curr1_next!=null && curr2_next!=null)
         {
-            left.next=right;
-            right.next=left_next;
-            left=left_next;
-            right=right_next;
-            left_next=left_next.next;
-            right_next=right_next.next;
+            curr1.next=curr2;
+            curr2.next=curr1_next;
 
+            curr1=curr1_next;
+            curr2=curr2_next;
+          
+            curr1_next=curr1_next.next;
+            curr2_next=curr2_next.next;
+            
         }
+
     }
     public ListNode reverse(ListNode head)
     {
@@ -52,7 +56,5 @@ class Solution {
         }
 
         return prev;
-        
     }
-
 }
