@@ -2,43 +2,21 @@ class Solution {
     public int maximumSum(int[] nums) 
     {
         int ans=-1;
-
-        HashMap<Integer,List<Integer>> map=new HashMap<>();
+       
+        int[] arr=new int[82];
+        Arrays.fill(arr,-1);
 
         for(int i=0;i<nums.length;i++)
         {
             int digit_sum=digitSum(nums[i]);
 
-            if(!map.containsKey(digit_sum))
+            if(arr[digit_sum]!=-1)
             {
-                List<Integer> newList = new ArrayList<>();
-                newList.add(nums[i]);
-                map.put(digit_sum, newList);
+                ans=Math.max(ans,nums[i]+arr[digit_sum]);
             }
-            else{   
 
-                List<Integer> list=map.get(digit_sum);
-                list.add(nums[i]);
+            arr[digit_sum]=Math.max(arr[digit_sum],nums[i]);
 
-                // map.put(digit_sum,list);
-            }
-        }
-
-
-        for(Map.Entry<Integer,List<Integer>> entry:map.entrySet())
-        {
-            int size=entry.getValue().size();
-
-            if(size>=2){
-                
-                List<Integer> list=entry.getValue();
-
-                Collections.sort(list);
-
-                int sum=list.get(list.size()-1)+list.get(list.size()-2);
-
-                ans=Math.max(ans,sum);
-            }
         }
 
         return ans; 
