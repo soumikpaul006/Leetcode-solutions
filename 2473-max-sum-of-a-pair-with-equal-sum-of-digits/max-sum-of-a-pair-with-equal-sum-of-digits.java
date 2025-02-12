@@ -20,7 +20,7 @@ class Solution {
                 List<Integer> list=map.get(digit_sum);
                 list.add(nums[i]);
 
-                map.put(digit_sum,list);
+                // map.put(digit_sum,list);
             }
         }
 
@@ -29,9 +29,8 @@ class Solution {
         {
             int size=entry.getValue().size();
 
-            if(size<2) continue;
-
-            else{
+            if(size>=2){
+                
                 List<Integer> list=entry.getValue();
 
                 Collections.sort(list);
@@ -41,8 +40,6 @@ class Solution {
                 ans=Math.max(ans,sum);
             }
         }
-
-        // if(ans!=-1) return ans;
 
         return ans; 
     }
