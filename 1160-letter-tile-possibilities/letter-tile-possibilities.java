@@ -1,20 +1,32 @@
 class Solution {
     int count=0;
-    public int numTilePossibilities(String tiles) {
-        char theArray[] = tiles.toCharArray(); 
-        Arrays.sort(theArray); // sort the array for duplicate removal
-        traverse(theArray, new boolean[theArray.length]);
-        return count - 1;
+    public int numTilePossibilities(String tiles) 
+    {
+        char[] charArray=tiles.toCharArray();
+
+        Arrays.sort(charArray);
+
+        boolean[] used=new boolean[tiles.length()];
+        backtrack(charArray,used);
+
+        return count-1;
     }
 
-    public void traverse(char theArray[], boolean used[]) {
-        count++; // count the number of sub-permutation
-        for(int i = 0; i < theArray.length; i++) {
-            if( used[i] || (i > 0 && theArray[i] == theArray[i - 1] && !used[i - 1]) ) // duplicate removal
+    public void backtrack(char charArray[], boolean used[]) 
+    {
+        count++;
+
+        for(int i=0;i<charArray.length;i++)
+        {
+            if(used[i] || (i>0 && charArray[i]==charArray[i-1] && !used[i-1]))
+            {
                 continue;
-            used[i] = true;
-            traverse(theArray, used);
-            used[i] = false;
+            }
+
+            used[i]=true;
+            backtrack(charArray,used);
+            used[i]=false;
         }
+        
     }
 }
