@@ -1,7 +1,7 @@
 class Solution {
     fun lengthOfLongestSubstring(s: String): Int 
     {
-        var set=HashSet<Char>()
+        val set=HashSet<Char>()
 
         var i=0
         var j=0
@@ -12,15 +12,17 @@ class Solution {
         {
             while(set.contains(s[j]))
             {
-                set.remove(s[i]);
+                set.remove(s[i])
                 i++
             }
-            
-            set.add(s[j++])
-            ans=max(ans,j-i)
 
+            set.add(s[j])
+            j++
+
+            ans=max(ans,(j-i))
         }
 
-        return ans   
+
+        return ans
     }
 }
