@@ -10,7 +10,6 @@ class Solution
             {
                 return true;
             }
-            set.add(nums[i]);
         }
 
         return false;
