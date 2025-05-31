@@ -2,34 +2,40 @@ class Solution
 {
     public int maxProfit(int[] prices) 
     {
-        
-        int n=prices.length;
-        int[][] dp = new int[prices.length+1][2]; // 2 states: 0 for holding, 1 for not holding
+        int[][] dp=new int[prices.length][2];
 
-        dp[n][0]=0;
-        dp[n][1]=0;
+        for(int i=0;i<dp.length;i++)
+        {
+            dp[i][0]=-1;
+            dp[i][1]=-1;
+        }
+
+        return func(prices,0,1,dp); 
+    }
+    public int func(int[] prices,int idx,int buy, int[][] dp)
+    {
+        if(idx==prices.length)
+        {
+            return 0;
+        }
+
+        if(dp[idx][buy]!=-1)
+        {
+            return dp[idx][buy];
+        } 
 
         int profit=0;
 
-        for(int idx=n-1;idx>=0;idx--)
+        if(buy==1)
         {
-            for(int buy=0;buy<=1;buy++)
-            {
-                if (buy == 1) 
-                {
-                    // Buy or do not buy
-                    profit = Math.max(-prices[idx] + dp[idx + 1][0], // buy
-                                    0 + dp[idx + 1][1]); // do not buy
-                } else {
-                    // Sell or do not sell
-                    profit = Math.max(prices[idx] + dp[idx + 1][1], // sell
-                                    0 + dp[idx + 1][0]); // do not sell
-                }
-                dp[idx][buy]=profit;
-            }
-            
+            profit=Math.max((-prices[idx]+func(prices,idx+1,0,dp)) //buy
+            ,(0+func(prices,idx+1,1,dp)));//not buy
         }
-
-        return dp[0][1]; 
+        else{
+            profit=Math.max((prices[idx]+func(prices,idx+1,1,dp)), //sell
+            (0+func(prices,idx+1,0,dp)));//not sell
+        }
+        
+       return dp[idx][buy]=profit;
     }
 }
