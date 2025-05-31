@@ -1,32 +1,27 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target) 
     {
-        int[] arr=new int[2];
-        Arrays.fill(arr,-1);
+        Arrays.sort(numbers);
 
-        int start=0;
-        int end=numbers.length-1;
+        int i=0;
+        int j=numbers.length-1;
 
-        while(start<end)
-        {
-            // int mid=(start+end)/2;
-
-            if(numbers[start]+numbers[end]==target)
+        while(i<j)
+        {   
+            if(numbers[i]+numbers[j]==target)
             {
-                arr[0]=start+1;
-                arr[1]=end+1;
-                break;
+                return new int[]{i+1,j+1};
             }
-            else if(numbers[start]+numbers[end]<target)
+            else if(numbers[i]+numbers[j]>target)
             {
-                start=start+1;
+                j--;
             }
             else{
-                end=end-1;
+                i++;
             }
-
         }
 
-        return arr;   
+        return new int[]{-1,-1};
+         
     }
 }
