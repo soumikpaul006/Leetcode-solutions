@@ -1,28 +1,33 @@
 class Solution 
 {
-    public List<String> list=new ArrayList<>();
+    public List<String> final_list=new ArrayList<>();
 
     public List<String> generateParenthesis(int n) 
     {
-        dfs(n,0,0,"");
-        return list;   
-    }
-    public void dfs(int n,int open,int close,String str)
-    {
-        if(str.length()==2*n)
-        {
-            list.add(str);
-            return;
-        }
+        
+        dfs(final_list,0,0,n,"");
 
+        return final_list;
+    
+    }
+    public void dfs(List<String> final_list,int open,int close,int n,String str)
+    {
+        if(str.length()==n*2)//base 
+        {
+            // System.out.println(str);
+            final_list.add(str);
+        }
 
         if(open<n)
         {
-            dfs(n,open+1,close,str+'(');
+            dfs(final_list,open+1,close,n,str+"(");
         }
+
         if(close<open)
         {
-            dfs(n,open,close+1,str+')');
+            dfs(final_list,open,close+1,n,str+")");
         }
+
     }
+    
 }
