@@ -1,37 +1,32 @@
-class Solution 
-{
-    public List<String> final_list=new ArrayList<>();
-    public String[] str_arr=new String[]{" "," ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-
+class Solution {
     public List<String> letterCombinations(String digits) 
     {
-        if(digits.length()==0)
-        {
-            return new ArrayList<>();
-        } 
+        if(digits.length()==0) return new ArrayList<>();
+        List<String> final_list=new ArrayList<>();
 
-        helper(0,digits,new StringBuilder());
+        String[] str={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+        backtrack(final_list,digits,str,new StringBuilder(),0);
+
         return final_list;
-
+    
     }
-    public void helper(int idx,String digits,StringBuilder sb)
+    public void backtrack(List<String> final_list,String digits,String[] str,StringBuilder sb,int idx)
     {
-        //base condition
         if(idx==digits.length())
         {
             final_list.add(sb.toString());
             return;
         }
 
-        //equation
-        char key=digits.charAt(idx);
-        String str=str_arr[key-'0'];
+        String s=str[digits.charAt(idx)-'0'];
 
-        for(char c:str.toCharArray())
+        for(char c:s.toCharArray())
         {
             sb.append(c);
-            helper(idx+1,digits,sb);
+            backtrack(final_list,digits,str,sb,idx+1);
             sb.deleteCharAt(sb.length()-1);
         }
+
     }
 }
