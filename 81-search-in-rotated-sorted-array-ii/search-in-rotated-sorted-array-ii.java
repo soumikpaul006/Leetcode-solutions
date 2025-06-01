@@ -1,54 +1,46 @@
 class Solution {
     public boolean search(int[] nums, int target) 
     {
-        int start = 0;
-        int end = nums.length - 1;
+       int l=0;
+        int r=nums.length-1;
 
-        while (start <= end) 
+        while(l<=r)
         {
-            int mid = (start + end) / 2;
+            int mid=(l+r)/2;
 
-            if (nums[mid] == target) 
-            {
-                return true;
-            }
+            if(nums[mid]==target) return true;
 
-            if(nums[start]==nums[mid] && nums[mid]==nums[end])
+            if(nums[mid]==nums[l] && nums[mid]==nums[r])
             {
-                start++;
-                end--;
+                l++;
+                r--;
                 continue;
             }
 
-            // Check if the left part is sorted
-            if (nums[start] <= nums[mid]) 
+            if(nums[mid]>nums[r]) 
             {
-                if (target >= nums[start] && target < nums[mid]) 
-                {
-                    end = mid - 1;
-                } 
-                else 
-                {
-                    start = mid + 1;
-                }
-            } 
-            else 
-            {
-                // The right part is sorted
-                if (target > nums[mid] && target <= nums[end]) 
-                {
-                    start = mid + 1;
-                } 
-                else 
-                {
-                    end = mid - 1;
-                }
-            }
+               if(target>=nums[l] && target<nums[mid])
+               {
+                    r=mid-1;
 
-       
+               }else{
+                    l=mid+1;
+               }
+            }
+            else 
+            { 
+                if(target>nums[mid] && target<=nums[r])
+                {
+                    l=mid+1;
+                }
+                else{
+                    r=mid-1;
+                }
+
+            }
         }
 
-        return false;  // target not found
+        return false;
         
     }
 }
