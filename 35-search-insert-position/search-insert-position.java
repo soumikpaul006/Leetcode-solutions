@@ -3,23 +3,21 @@ class Solution {
     {
         int l=0;
         int r=nums.length-1;
-        int ans=0;
 
         while(l<=r)
         {
-            int mid=(r+l)/2;
+            int mid=(l+r)/2;
 
-            if(nums[mid]>=target) //may be ans answer
+
+            if(nums[mid]>=target)
             {
-                // ans=mid;
-                r=mid-1;//look for better options
+                r=mid-1;
             }
             else{
                 l=mid+1;
             }
         }
-
+       
         return l;
-        
     }
 }
