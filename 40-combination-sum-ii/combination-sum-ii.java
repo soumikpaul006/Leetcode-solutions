@@ -1,33 +1,38 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        
-        Arrays.sort(candidates); //sorted the list
+
+        Arrays.sort(candidates);
         List<List<Integer>> final_list=new ArrayList<>();
-        backtrack(final_list,new ArrayList<>(),candidates,0,target,0);
+
+        backtrack(final_list,new ArrayList<>(),candidates,target,0,0,new boolean[candidates.length]);
+
         return final_list;
+        
     }
-    public void backtrack(List<List<Integer>> final_list, List<Integer> new_list,int[] arr,int sum,int target, int idx)
+    public void backtrack(List<List<Integer>> final_list,List<Integer> temp_list,int[] nums,int target,int sum,int idx,boolean[] bool)
     {
-        //base
-
-        // if(final_list.contains(new_list)) return;
-
         if(sum==target)
         {
-            final_list.add(new ArrayList<>(new_list));
+            final_list.add(new ArrayList<>(temp_list));
             return;
         }
 
-        for(int i=idx;i<arr.length;i++)
+        for(int i=idx;i<nums.length;i++)
         {
-            if(i>idx && arr[i]==arr[i-1]) continue;
 
-            if(sum + arr[i] <= target) 
-            {
-                new_list.add(arr[i]);
-                backtrack(final_list,new_list,arr,sum+arr[i],target,i+1); // note: incrementing the i;
-                new_list.remove(new_list.size()-1);
-            }
+            if(bool[i] || (i>idx && nums[i]==nums[i-1] && !bool[i-1])) continue;
+
+            if(sum<=target)
+            {   
+
+                bool[i]=true;
+                temp_list.add(nums[i]);
+                backtrack(final_list,temp_list,nums,target,sum+nums[i],i,bool);
+
+                bool[i]=false;
+                temp_list.remove(temp_list.size()-1);
+            }   
         }
+
     }
 }
