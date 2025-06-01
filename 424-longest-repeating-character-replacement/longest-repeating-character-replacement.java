@@ -1,40 +1,39 @@
 class Solution {
     public int characterReplacement(String s, int k) 
     {
+        int[] arr=new int[26];
+
         int l=0;
         int r=0;
-        int res=0;
 
-        int[] arr=new int[26];
+        int max=Integer.MIN_VALUE;
 
         while(r<s.length())
         {
             arr[s.charAt(r)-'A']++;
 
-            if((r-l+1)-max_freq(arr)<=k)
+            if((r-l+1)-maxFreq(arr)<=k) //if valid
             {
-                res=Math.max(res,(r-l+1));
-            }
-            else{
+                max=Math.max(max,r-l+1);
+
+            }else{ //not valid
 
                 arr[s.charAt(l)-'A']--;
                 l++;
-            }
+            }   
 
             r++;
-
         }
 
-        return res;
-        
+        return max;
     }
-    public int max_freq(int[] arr)
+    public int maxFreq(int[] arr)
     {
         int max=Integer.MIN_VALUE;
 
-        for(int i=0;i<26;i++)
+        for(int x:arr)
         {
-            max=Math.max(max,arr[i]);
+            max=Math.max(max,x);
         }
 
         return max;
