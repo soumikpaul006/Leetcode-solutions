@@ -1,65 +1,55 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) 
     {  
-        int fo=firstOcc(nums,target);
+        int x=firstOcc(nums,target);
 
-        if(fo==-1)
+        if(x==nums.length || nums[x]!=target)
         {
             return new int[]{-1,-1};
         }
 
-        int lo=lastOcc(nums,target);
-
-        return new int[]{fo,lo};
+        return new int[]{x,lastOcc(nums,target)};
     }
-    public int firstOcc(int[] arr,int target)
+    public int firstOcc(int[] nums,int target)
     {
-        int start=0;
-        int end=arr.length-1;
-        int ans=-1;
+        int l=0;
+        int r=nums.length-1;
 
-        while(start<=end)
+        while(l<=r)
         {
-            int mid=(start+end)/2;
+            int mid=(l+r)/2;
 
-            if(arr[mid]==target)
+            if(nums[mid]>=target)
             {
-                ans=mid;
-                end=mid-1;
-            }
-            else if(arr[mid]<target)
-            {
-                start=mid+1;
+                r=mid-1;
             }
             else{
-                end=mid-1;
+                l=mid+1;
             }
         }
-        return ans;
-    }
-    public int lastOcc(int[] arr,int target)
-    {
-        int start=0;
-        int end=arr.length-1;
-        int ans=-1;
 
-        while(start<=end)
+        return l;
+    }
+    public int lastOcc(int[] nums,int target)
+    {
+        int l=0;
+        int r=nums.length-1;
+
+
+        while(l<=r)
         {
-            int mid=(start+end)/2;
-            
-            if(arr[mid]==target)
+            int mid=(l+r)/2;
+
+            if(nums[mid]>target)
             {
-                ans=mid;
-                start=mid+1;
-            }
-            else if(arr[mid]<target)
-            {
-                start=mid+1;
+                r=mid-1;
             }
             else{
-                end=mid-1;
+                l=mid+1;
             }
         }
-        return ans;
+
+        return r;
     }
+    
 }
