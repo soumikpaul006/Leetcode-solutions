@@ -13,39 +13,38 @@
  *     }
  * }
  */
-class Solution 
-{
-    public List<Integer> rightSideView(TreeNode root) 
-    {
-        List<Integer> r_list=new ArrayList<>();
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+
+        List<Integer> final_list=new ArrayList<>();
         Queue<TreeNode> q=new LinkedList<>();
 
-        if(root==null) return r_list;
+        if(root==null) return final_list;
 
         q.offer(root);
-        
-        while(!q.isEmpty())
-        {   
-            int level_size=q.size();
-            List<Integer> sub_list=new LinkedList<>();
 
-            for(int i=0;i<level_size;i++) // traverse number of node in a level which is the size of the q
+        while(!q.isEmpty())
+        {
+            int size=q.size();
+            List<Integer> list=new ArrayList<>();
+
+            for(int i=0;i<size;i++)
             {
                 if(q.peek().left!=null)
                 {
-                    q.offer(q.peek().left); //if left is not null add left node
+                    q.offer(q.peek().left);
                 }
                 if(q.peek().right!=null)
                 {
-                    q.offer(q.peek().right); //if right is not null add right node
+                    q.offer(q.peek().right);
                 }
-                sub_list.add(q.remove().val);  //add elements level wise
+                list.add(q.remove().val);
             }
 
-            r_list.add(sub_list.get(sub_list.size()-1)); // add the last element of each level
+            final_list.add(list.get(list.size()-1));
+        } 
 
-        }
-
-        return r_list;
+        return final_list;
+        
     }
 }
