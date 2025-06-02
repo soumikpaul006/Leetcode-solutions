@@ -1,13 +1,13 @@
 class Pair{
     int row;
     int col;
-    int time;
+    int tmt;
 
-    Pair(int row,int col,int time)
+    Pair(int row,int col,int tmt)
     {
         this.row=row;
         this.col=col;
-        this.time=time;
+        this.tmt=tmt;
     }
 }
 class Solution {
@@ -16,23 +16,23 @@ class Solution {
         int row=grid.length;
         int col=grid[0].length;
 
-        int[][] vis=new int[row][col];
+        int countFresh=0;
 
         Queue<Pair> q=new LinkedList<>();
+        int[][] visited=new int[row][col];
 
-        int countFresh=0;
 
         for(int i=0;i<row;i++)
         {
             for(int j=0;j<col;j++)
             {
-                if(grid[i][j]==2)
+                if(grid[i][j]==2)//rotten
                 {
                     q.offer(new Pair(i,j,0));
-                    vis[i][j]=2;
+                    visited[i][j]=2;
                 }
                 else{
-                    vis[i][j]=0;
+                    visited[i][j]=0;
                 }
 
                 if(grid[i][j]==1)
@@ -45,15 +45,14 @@ class Solution {
         int[] delrow={+1,0,-1,0};
         int[] delcol={0,+1,0,-1};
 
-        int ans=0;
-
         int count=0;
+        int ans=0;
 
         while(!q.isEmpty())
         {
             int r=q.peek().row;
             int c=q.peek().col;
-            int tmt=q.peek().time;
+            int tmt=q.peek().tmt;
 
             q.remove();
 
@@ -64,10 +63,11 @@ class Solution {
                 int nrow=r+delrow[i];
                 int ncol=c+delcol[i];
 
-                if(nrow>=0 && ncol>=0 && nrow<row && ncol<col && grid[nrow][ncol]==1 && vis[nrow][ncol]==0)
+                if(nrow>=0 && ncol>=0 && nrow<row && ncol<col && grid[nrow][ncol]==1 && visited[nrow][ncol]==0)
                 {
                     q.offer(new Pair(nrow,ncol,tmt+1));
-                    vis[nrow][ncol]=2;
+                    visited[nrow][ncol]=1;
+
                     count++;
                 }
             }
@@ -76,6 +76,5 @@ class Solution {
         if(count!=countFresh) return -1;
 
         return ans;
-   
     }
 }
