@@ -33,15 +33,13 @@ class Solution {
 
         grid[i][j]=2;
 
-        int sum=1;
-        
+        // int sum=1;
+        // sum+= dfs(grid,i+1,j);
+        // sum+= dfs(grid,i-1,j);
+        // sum+= dfs(grid,i,j+1);
+        // sum+= dfs(grid,i,j-1);
 
-        sum+= dfs(grid,i+1,j);
-        sum+= dfs(grid,i-1,j);
-        sum+= dfs(grid,i,j+1);
-        sum+= dfs(grid,i,j-1);
-
-        return sum;
+        return 1+dfs(grid,i+1,j)+dfs(grid,i-1,j)+dfs(grid,i,j+1)+dfs(grid,i,j-1);
 
     }
 }
