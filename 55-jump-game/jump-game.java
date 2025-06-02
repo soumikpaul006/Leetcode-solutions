@@ -2,16 +2,16 @@ class Solution
 {
     public boolean canJump(int[] nums) 
     {
-        int finalIdx=nums.length-1;
+        int final_idx=nums.length-1;
 
         for(int i=nums.length-2;i>=0;i--)
         {
-            if(nums[i]>=finalIdx-i)
+            if(nums[i]>=final_idx-i)
             {
-                finalIdx=i;
+                final_idx=i;
             }
         }
 
-        return finalIdx==0;
+        return final_idx==0;
     }
 }
