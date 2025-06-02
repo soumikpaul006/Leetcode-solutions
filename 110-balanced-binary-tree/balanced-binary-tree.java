@@ -13,59 +13,37 @@
  *     }
  * }
  */
-
-//TC: O(N) //Time Optimised
-
- class Solution {
+class Solution 
+{
     public boolean isBalanced(TreeNode root) 
     {
-        return dfs(root)!=-1;
 
+        if(root==null)
+        {
+            return true;
+        }
+
+        int left=height(root.left);
+        int right=height(root.right);
+
+        if(Math.abs(left-right)>1)
+        {
+            return false;
+        }
+
+
+        return isBalanced(root.left)&&isBalanced(root.right);
     }
-    public int dfs(TreeNode root)
+    public int height(TreeNode root)
     {
         if(root==null)
         {
             return 0;
         }
 
-        int left=dfs(root.left);
-        int right=dfs(root.right);
+        int left=height(root.left);
+        int right=height(root.right);
 
-        if(left==-1 || right==-1) return -1;
-
-        if(Math.abs(left-right)>1)
-        {
-            return -1;
-        } 
-        
         return 1+Math.max(left,right);
     }
- }
-
-//TC:  O(N^2) //Brute Force
-// class Solution {
-//     public boolean isBalanced(TreeNode root) 
-//     {
-//         if(root==null) return true;
-
-//         int left=height(root.left);
-//         int right=height(root.right);
-
-//         if(Math.abs(left-right)>1)
-//         {
-//             return false;
-//         } 
-
-//         return isBalanced(root.left) && isBalanced(root.right);
-//     }
-//     public int height(TreeNode root)
-//     {
-//         if(root==null) return 0;
-
-//         int left=height(root.left);
-//         int right=height(root.right);
-
-//         return 1+Math.max(left,right);
-//     }
-// }
+}
