@@ -16,6 +16,7 @@
 class Solution
 {
     public List<Integer> list=new ArrayList<>();
+
     public List<Integer> inorderTraversal(TreeNode root) 
     {
         dfs(root);
@@ -31,6 +32,5 @@ class Solution
         dfs(root.left);
         list.add(root.val);
         dfs(root.right);
-
     }
 }
