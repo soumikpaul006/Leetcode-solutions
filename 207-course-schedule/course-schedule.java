@@ -1,13 +1,11 @@
-class Solution {
+class Solution 
+{
     public boolean canFinish(int numCourses, int[][] prerequisites) 
     {
-        //Detect a Cycle in a Directed Graph
-        //Topological sort BFS
 
+        if(prerequisites.length==0) return true;
 
-        //form a adj_list
-
-        ArrayList<ArrayList<Integer>> adj_list=new ArrayList<>();
+        List<List<Integer>> adj_list=new ArrayList<>();
 
         for(int i=0;i<numCourses;i++)
         {
@@ -19,53 +17,54 @@ class Solution {
             adj_list.get(prerequisites[i][1]).add(prerequisites[i][0]);
         }
 
-        //in degree
         int[] indegree=new int[numCourses];
 
-        for(int i=0;i<numCourses;i++)
+        for(int i=0;i<adj_list.size();i++)
         {
-            for(Integer course:adj_list.get(i))
+            List<Integer> list=adj_list.get(i);
+
+            for(int num:list)
             {
-                indegree[course]++;
+                indegree[num]++;
             }
         }
-        
 
         Queue<Integer> q=new LinkedList<>();
+        List<Integer> list=new ArrayList<>();
 
-        //add indegree 0 to the q first
-        for(int i=0;i<numCourses;i++)
+        for(int i=0;i<indegree.length;i++)
         {
             if(indegree[i]==0)
             {
                 q.offer(i);
+                list.add(i);
             }
         }
-
-        List<Integer> list=new ArrayList<>();
 
         while(!q.isEmpty())
         {
             int node=q.remove();
-            list.add(node);
 
-            for(int neighbors:adj_list.get(node))
+            for(Integer adj_node:adj_list.get(node))
             {
-                indegree[neighbors]--;
+                indegree[adj_node]--;
 
-                if(indegree[neighbors]==0)
+                if(indegree[adj_node]==0)
                 {
-                    q.offer(neighbors);
-                }  
-
+                    q.offer(adj_node);
+                    list.add(adj_node);
+                }
             }
         }
 
-        if(list.size()==numCourses)
+        if(list.size()!=numCourses)
         {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
+
+
+     
     }
 }
