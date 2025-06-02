@@ -1,24 +1,16 @@
 class Solution {
     public int maxSubArray(int[] nums) 
     {
-        if(nums.length==1) return nums[0];
-
-        int totalMax=nums[0];
-        int max=nums[0]; 
+        int local_max=nums[0];
+        int global_max=nums[0];
 
         for(int i=1;i<nums.length;i++)
-        {   
-            if(nums[i]<nums[i]+max)
-            {
-                max=nums[i]+max;
-            }
-            else{
-                max=nums[i];
-            }
+        {
+            local_max=Math.max(nums[i],local_max+nums[i]);
 
-            totalMax=Math.max(totalMax,max);
+            global_max=Math.max(global_max,local_max);
         }
 
-        return totalMax;
+        return global_max;
     }
 }
