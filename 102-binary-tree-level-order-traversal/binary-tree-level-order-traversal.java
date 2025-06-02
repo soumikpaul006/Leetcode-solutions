@@ -21,12 +21,13 @@ class Solution {
 
         if(root==null) return final_list;
 
-        q.offer(root);   
+        q.offer(root);
 
         while(!q.isEmpty())
         {
             int size=q.size();
-            List<Integer> subList=new ArrayList<>();
+            List<Integer> list=new ArrayList<>();
+
             for(int i=0;i<size;i++)
             {
                 if(q.peek().left!=null)
@@ -37,10 +38,11 @@ class Solution {
                 {
                     q.offer(q.peek().right);
                 }
-                subList.add(q.remove().val);
+                list.add(q.remove().val);
             }
-            final_list.add(subList);
-        }     
+
+            final_list.add(list);
+        } 
 
         return final_list;
     }
